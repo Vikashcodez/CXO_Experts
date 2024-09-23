@@ -4,7 +4,7 @@ import Login from './compontes/Admin/Login';
 import Dashboard from './compontes/Admin/dashboard';
 import AddService from './compontes/Admin/AddService';
 import AddNewsletter from './compontes/Admin/AddNewsletter'; // Import AddNewsletter component
-import Services from './compontes/Pages/Services';
+import Services from './compontes/services/services';
 import Newsletter from './compontes/Pages/Newsletter';
 import Eservice from './compontes/Admin/delservices'
 import Enews from './compontes/Admin/delnews'
@@ -25,8 +25,8 @@ function App() {
         <Route path="/add-newsletter" element={<AddNewsletter />} /> {/* AddNewsletter Route */}
         <Route path="/services" element={<Services />} />
         <Route path="/newsletters" element={<Newsletter />} />
-        <Route path="/enewsletters" element={<Enews />} />
-        <Route path="/eservices" element={<Eservice />} />
+        <Route path="/hide-delete-newsletters" element={<Enews />} />
+        <Route path="/hide-delete-services" element={<Eservice />} />
         <Route path="/" element={<Home />} />
         <Route path="/book-appointment" element={<BookAppointment />} />
         <Route path="/services/:id" element={<ServiceDetail />} />

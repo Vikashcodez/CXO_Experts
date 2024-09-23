@@ -15,9 +15,9 @@ const BookAppointment = () => {
   const [showTermsModal, setShowTermsModal] = useState(false);
 
   const services = [
-    'Service 1', 'Service 2', 'Service 3', 'Service 4', 'Service 5',
-    'Service 6', 'Service 7', 'Service 8', 'Service 9', 'Service 10',
-    'Service 11', 'Service 12', 'Service 13'
+    'Forensic Accounting', 'Risk Management', 'Financial Reporting', 'Management Consulting', 'Financial Management',
+    'Performance Management', 'Business Valuation', 'Strategic Management', 'Internal Controls', 'Audit and Assurance Services',
+    'Financial Advisory Service', 'Wealth Management Consultancy'
   ];
 
   const handleChange = (e) => {
@@ -37,7 +37,7 @@ const BookAppointment = () => {
     }
 
     // Send email
-    emailjs.sendForm('service_cafeacj', 'template_74uv7qz', e.target, 'zju17tWDRF35C4Jii')
+    emailjs.sendForm('service_fa2y8at', 'template_8ea0ntu', e.target, 'XtsE5q4p92yGgveZe')
       .then((result) => {
         console.log(result.text);
         alert('Appointment booked successfully!');

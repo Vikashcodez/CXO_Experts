@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import Log from '../../assets/Images/x2.png'
 
 const Footer = () => {
   return (
@@ -9,8 +10,8 @@ const Footer = () => {
           <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
             <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
               <img
-                className="w-auto h-9"
-                src="https://cdn.rareblocks.xyz/collection/celebration/images/logo.svg"
+                className="w-auto h-18"
+                src= {Log}
                 alt="Logo"
               />
               <p className="text-base leading-relaxed text-gray-600 mt-7">

@@ -14,6 +14,15 @@ function ServicesList() {
         setServices(data);
     };
 
+    // Function to truncate description
+    const truncateDescription = (description, wordLimit) => {
+        const words = description.split(' ');
+        if (words.length > wordLimit) {
+            return words.slice(0, wordLimit).join(' ') + '...';
+        }
+        return description;
+    };
+
     return (
         <div className="container mx-auto py-12 ">
             {/* Page Title */}
@@ -43,7 +52,9 @@ function ServicesList() {
                         <h2 className="text-xl font-semibold mb-2 text-center">{service.title}</h2>
 
                         {/* Service Description */}
-                        <p className="text-gray-600 mb-4 text-center">{service.description}</p>
+                        <p className="text-gray-600 mb-4 text-center">
+                            {truncateDescription(service.description, 60)}
+                        </p>
 
                         {/* Call to Action Button */}
                         <div className="text-center">

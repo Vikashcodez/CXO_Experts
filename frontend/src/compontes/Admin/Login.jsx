@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Im from '../../assets/Images/x2.png'
+import Im from '../../assets/Images/x3.png'
 
 function AdminLogin() {
     const [username, setUsername] = useState('');
@@ -60,11 +60,11 @@ function AdminLogin() {
             </div>
 
             {/* Right Side - Illustration Section */}
-            <div className="w-1/2 bg-gradient-to-r from-blue-200 to-blue-300 flex justify-center items-center">
+            <div className="w-1/2 bg-gradient-to-r from-green-300 to-green-500 flex justify-center items-center">
                 <img
                     src={Im}
                     alt="Tech Illustration"
-                    className="w-4/5 h-auto"
+                    className="w-3/5 h-auto"
                 />
             </div>
         </div>

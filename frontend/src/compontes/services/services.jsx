@@ -1,62 +1,78 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const services = [
-  {
-    title: "Periscope by McKinsey",
-    description: "The Periscope platform combines world-class intellectual property, prescriptive analytics, and cloud-based tools with expert support and training to drive revenue growth now and into the future.",
-    imageUrl: "https://via.placeholder.com/400x300", // Replace with actual image URL
-    link: "#"
-  },
-  {
-    title: "CustomerOne",
-    description: "We combine human understanding with AI-powered analytics to reveal customer insights, identify opportunities for growth, and deliver lasting impact at speed.",
-    imageUrl: "https://via.placeholder.com/400x300", // Replace with actual image URL
-    link: "#"
-  },
-  {
-    title: "Experience DNA",
-    description: "A data and analytics platform to maximize the value of customer experience management and design.",
-    imageUrl: "https://via.placeholder.com/400x300", // Replace with actual image URL
-    link: "#"
-  },
-  {
-    title: "Marketing Solutions",
-    description: "Get cutting-edge insights into consumer behavior, brand perception, and innovation opportunities and make data-driven decisions to optimize marketing spend and personalize customer communication.",
-    imageUrl: "https://via.placeholder.com/400x300", // Replace with actual image URL
-    link: "#"
-  },
-  {
-    title: "Consumer Marketing Analytics Center",
-    description: "We accelerate your company's ability using advanced analytics to translate insights from big data into actions for your consumer-facing marketing organization.",
-    imageUrl: "https://via.placeholder.com/400x300", // Replace with actual image URL
-    link: "#"
-  },
-  // Add more services here up to 13 total
-];
+function ServicesList() {
+    const [services, setServices] = useState([]);
 
-const Capabilities = () => {
-  return (
-    <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-      <h2 className="text-3xl text-center font-semibold text-gray-800 mb-6">Our Services</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {services.map((service, index) => (
-          <div 
-            key={index} 
-            className="bg-white shadow-md rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-lg"
-          >
-            <img src={service.imageUrl} alt={service.title} className="w-full h-48 object-cover" />
-            <div className="p-6">
-              <h3 className="text-lg font-semibold text-gray-800">{service.title}</h3>
-              <p className="mt-2 text-gray-600">{service.description}</p>
-              <a href={service.link} className="mt-4 inline-block text-blue-600 font-medium hover:text-blue-800">
-                Learn more &rarr;
-              </a>
+    useEffect(() => {
+        fetchServices();
+    }, []);
+
+    const fetchServices = async () => {
+        const response = await fetch('http://localhost:5000/services');
+        const data = await response.json();
+        setServices(data);
+    };
+
+    return (
+        <div className="container mx-auto py-12 bg-gray-100 pt-24"> {/* Added pt-24 for spacing */}
+            {/* Page Title */}
+            <h1 className="text-4xl font-bold mb-8 text-center">Our Services</h1>
+
+            {/* Services Section */}
+            <div className="relative">
+                {/* Services Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+                    {services.map((service) => (
+                        <ServiceCard key={service._id} service={service} />
+                    ))}
+                </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+        </div>
+    );
+}
 
-export default Capabilities;
+function ServiceCard({ service }) {
+    const [showFullDescription, setShowFullDescription] = useState(false);
+
+    // Split description into words and limit to 60 words
+    const shortDescription = service.description.split(' ').slice(0, 60).join(' ');
+
+    return (
+        <div className="bg-white shadow-lg rounded-lg p-6 relative">
+            {/* Icon Section */}
+            <div className="flex justify-center -mt-12 mb-4">
+                <div className="bg-white text-white p-4 rounded-full">
+                    <img 
+                        src={service.imageUrl} 
+                        alt={service.title} 
+                        className="w-12 h-12 object-contain"
+                    />
+                </div>
+            </div>
+
+            {/* Service Title */}
+            <h2 className="text-xl font-semibold mb-2 text-center">{service.title}</h2>
+
+            {/* Service Description */}
+            <p className="text-gray-600 mb-4 text-center">
+                {shortDescription}...
+            </p>
+
+            {/* Call to Action Buttons */}
+            <div className="text-center">
+                {/* Both 'Read More' and 'Learn More' navigate to the same detailed page */}
+                <Link
+                    to={`/services/${service._id}`}
+                    className="inline-block bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 mr-4"
+                >
+                    Read More
+                </Link>
+
+               
+            </div>
+        </div>
+    );
+}
+
+export default ServicesList;

@@ -36,29 +36,33 @@ function ServiceDetail() {
     if (!service) return null;
 
     return (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto p-8">
             {/* Card Wrapper */}
-            <div className="bg-white shadow-md rounded-lg p-8 max-w-3xl mx-auto">
+            <div className="bg-white border border-gray-200 shadow-lg rounded-lg p-8 max-w-4xl mx-auto">
                 {/* Service Title */}
-                <h1 className="text-4xl font-bold mb-6 text-center text-gray-800">{service.title}</h1>
+                <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-4">{service.title}</h1>
 
-                {/* Service Image */}
-                {service.imageUrl && (
-                    <div className="flex justify-center mb-6">
-                        <img
-                            src={service.imageUrl}
-                            alt={service.title}
-                            className="rounded-lg shadow-md object-cover w-full max-w-lg h-48"
-                        />
-                    </div>
-                )}
+                {/* Service Subtitle */}
+                <h2 className="text-lg font-medium text-center text-gray-500 mb-6 italic">
+                    Professional Solutions for {service.title}
+                </h2>
+
+                {/* Horizontal Divider */}
+                <div className="border-b border-gray-300 mb-6"></div>
 
                 {/* Service Description */}
-                <p className="text-gray-700 text-lg mb-6">{service.description}</p>
+                <p className="text-gray-600 text-lg leading-relaxed mb-8 text-justify">
+                    {service.description}
+                </p>
 
                 {/* Service Details (Rich Text) */}
-                <div className="prose max-w-none">
+                <div className="prose max-w-none text-gray-700">
                     <ReactQuill value={service.details} readOnly={true} theme="bubble" />
+                </div>
+
+                {/* Footer/Divider */}
+                <div className="mt-8 pt-4 border-t border-gray-300 text-center text-sm text-gray-500">
+                    Thank you for choosing our services!
                 </div>
             </div>
         </div>
