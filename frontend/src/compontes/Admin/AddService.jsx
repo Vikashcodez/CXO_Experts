@@ -12,7 +12,7 @@ function ServiceForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await fetch('http://localhost:5000/services', {
+        await fetch('https://cxo-experts.onrender.com/services', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

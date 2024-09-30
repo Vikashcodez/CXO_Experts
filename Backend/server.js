@@ -9,16 +9,18 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/myapp', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => console.log('MongoDB connected')).catch(err => console.log(err));
+// Use MongoDB URI from environment variable
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/myapp';
+
+mongoose.connect(mongoURI)
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.log('MongoDB connection error:', err));
 
 app.use('/admin', adminRoutes);
 app.use('/services', serviceRoutes);
 app.use('/newsletters', newsletterRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

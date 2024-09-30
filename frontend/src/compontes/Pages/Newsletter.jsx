@@ -8,7 +8,7 @@ function NewslettersList() {
     }, []);
 
     const fetchNewsletters = async () => {
-        const response = await fetch('http://localhost:5000/newsletters');
+        const response = await fetch('https://cxo-experts.onrender.com/newsletters');
         const data = await response.json();
         setNewsletters(data);
     };

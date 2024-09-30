@@ -9,7 +9,7 @@ function ServicesList() {
     }, []);
 
     const fetchServices = async () => {
-        const response = await fetch('http://localhost:5000/services');
+        const response = await fetch('https://cxo-experts.onrender.com/services');
         const data = await response.json();
         setServices(data);
     };
